@@ -1,0 +1,48 @@
+//using 2 stacks
+vector <int> postOrder(Node* root){
+stack<Node*>s1,s2;
+s1.push(root);
+Node* node=root;
+while(s1.size()){
+    
+    node=s1.top();
+    s1.pop();
+    s2.push(node);
+    if(node->left)s1.push(node->left);
+  if(node->right) s1.push(node->right);
+}
+vector<int>ans;
+while(s2.size()){
+    ans.push_back(s2.top()->data);
+    s2.pop();
+}
+return ans;
+}
+
+///using 1 stack
+vector <int> postOrder(Node* root){
+    stack<Node*>s;
+    vector<int>ans;
+    Node*curr=root,*temp;
+    while(curr||s.size()){
+        if(curr){
+            s.push(curr);
+            curr=curr->left;
+        }
+        else{
+            temp=s.top()->right;
+            if(temp==NULL){
+                temp=s.top();
+                s.pop();
+                ans.push_back(temp->data);
+                while(s.size()>0&&temp==s.top()->right){
+                    temp=s.top();
+                    s.pop();
+                    ans.push_back(temp->data);
+                }
+            }
+            else curr=temp;
+        }
+    }
+    return ans;
+}
