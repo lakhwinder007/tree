@@ -1,0 +1,17 @@
+int solve(TreeNode* node,int &temp){
+        if(node==NULL)return 0;
+           int left=solve(node->left,temp);
+          int  right=solve(node->right,temp);
+        if(left<0)left=0;
+        if(right<0)right=0;
+          temp=max(temp,left+right+node->val);
+            int ans=max(left,right)+node->val;
+            return ans;
+        
+    }
+    int maxPathSum(TreeNode* root) {
+        if(root==NULL)return 0;
+        int temp=INT_MIN;
+        solve(root,temp);
+        return temp;
+    }
