@@ -13,3 +13,5 @@ https://practice.geeksforgeeks.org/problems/postorder-traversal/1#
 https://leetcode.com/problems/binary-tree-maximum-path-sum/
 
 https://practice.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1/#
+
+https://practice.geeksforgeeks.org/problems/left-view-of-binary-tree/1/
