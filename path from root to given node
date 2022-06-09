@@ -1,0 +1,14 @@
+ bool path(TreeNode* root,TreeNode* target,vector<TreeNode*>&v){
+              if(root==NULL)return false;
+             v.push_back(root);
+            if(root==target){
+                return true;
+            }
+        bool left=path(root->left,target,v);
+        bool right=path(root->right,target,v);
+       
+        if(left||right)return true;
+        v.pop_back();
+        return false;
+        
+           }
