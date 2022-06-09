@@ -19,3 +19,5 @@ https://practice.geeksforgeeks.org/problems/left-view-of-binary-tree/1/
 https://leetcode.com/problems/binary-tree-paths/
 
 https://leetcode.com/problems/path-sum/
+
+https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
