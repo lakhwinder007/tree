@@ -1,0 +1,28 @@
+ bool isleaf(Node* root){
+        if(root==NULL)return false;
+        if(root->left==NULL&&root->right==NULL)return true;
+        return false;
+    }
+    bool dfs(Node* root,int s,int cur){
+        
+        if(root==NULL)return false;
+        cur=cur+root->data;
+        if(isleaf(root)){
+            if(cur==s)return true;
+            else return false;
+        }
+        bool a=dfs(root->left,s,cur);
+        bool b=dfs(root->right,s,cur);
+        
+       // cur=cur-root->data;
+        return a||b;
+        
+        
+    }
+    bool hasPathSum(Node *root, int s) {
+    // Your code here
+    int cur=0;
+    
+   return dfs(root,s,cur);
+    
+}
