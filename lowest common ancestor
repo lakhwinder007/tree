@@ -1,0 +1,40 @@
+ // bool path(TreeNode* root,TreeNode* target,vector<TreeNode*>&v){
+//               if(root==NULL)return false;
+//              v.push_back(root);
+//             if(root==target){
+//                 return true;
+//             }
+//         bool left=path(root->left,target,v);
+//         bool right=path(root->right,target,v);
+       
+//         if(left||right)return true;
+//         v.pop_back();
+//         return false;
+        
+//            }
+//     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+//         if(root==NULL)return NULL;
+//         vector<TreeNode*>a,b;
+//         path(root,p,a);
+//         path(root,q,b);
+
+//         for(int i=min(a.size(),b.size())-1;i>=0;i--){
+//              if(a[i]==b[i])return a[i];
+//         }
+//         return a[0];
+//     }
+    ///////***********************************************************//////////////////////
+    ///better solution////////
+    TreeNode* lca(TreeNode *root,TreeNode* a,TreeNode* b){
+           if(root==NULL)return NULL;
+            if(root==a||root==b)return root;
+            TreeNode*left=lca(root->left,a,b);
+            TreeNode* right=lca(root->right,a,b);
+            if(left==NULL)return right;
+            if(right==NULL)return left;
+            else return root;
+        }
+     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q){
+         if(root==NULL)return NULL;
+         return lca(root,p,q);
+     }
