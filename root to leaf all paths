@@ -1,0 +1,29 @@
+ bool isleaf(TreeNode* root){
+         if(root==NULL)return false;
+        if(root->left==NULL&&root->right==NULL)return true;
+        return false;
+    }
+    void dfs(TreeNode* root,vector<string>&ans,string s){
+           if(root==NULL)return;
+       if(!isleaf(root)){ s.append(to_string(root->val));
+                        // s.append("->");
+                        }
+        if(isleaf(root)){
+            s.append(to_string(root->val));
+           ans.push_back(s);
+          //  return;
+        }
+       // string a=s.append("->");
+        if(root->left)dfs(root->left,ans,s+"->");
+        if(root->right)dfs(root->right,ans,s+"->");
+        s.pop_back();
+        
+    }
+     vector<string> binaryTreePaths(TreeNode* root) {
+        
+         vector<string>ans;
+          if(root==NULL)return ans;
+         string s="";
+         dfs(root,ans,s);
+         return ans;
+     }
