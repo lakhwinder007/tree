@@ -1,0 +1,46 @@
+//       void solve(TreeNode* root,int target ,vector<int>temp,vector<vector<int>>&ans){
+//          if(root==NULL)return ;
+//            temp.push_back(root->val);
+//           target=target-root->val;
+//         if(target==0&&root->left==NULL&&root->right==NULL){
+//              ans.push_back(temp);
+//             return ;
+//         }
+       
+//            if(root->left)solve(root->left,target,temp,ans);
+//         if(root->right)solve(root->right,target,temp,ans);
+        
+//     }
+//     vector<vector<int>> pathSum(TreeNode* root, int target) {
+       
+//         vector<vector<int>>ans;
+//          if(root==NULL)return ans;
+//         vector<int>temp;
+//         solve(root,target,temp,ans);
+//         return ans;
+//     }
+    
+    ///below is faster solution pass by reference and do pop
+     void solve(TreeNode* root,int target ,vector<int>&temp,vector<vector<int>>&ans){
+         if(root==NULL)return ;
+           temp.push_back(root->val);
+          target=target-root->val;
+        if(target==0&&root->left==NULL&&root->right==NULL){
+             ans.push_back(temp);
+            temp.pop_back();
+            return ;
+        }
+       
+           if(root->left)solve(root->left,target,temp,ans);
+        if(root->right)solve(root->right,target,temp,ans);
+         temp.pop_back();
+        
+    }
+    vector<vector<int>> pathSum(TreeNode* root, int target) {
+       
+        vector<vector<int>>ans;
+         if(root==NULL)return ans;
+        vector<int>temp;
+        solve(root,target,temp,ans);
+        return ans;
+    }
