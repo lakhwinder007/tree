@@ -17,3 +17,5 @@ https://practice.geeksforgeeks.org/problems/boundary-traversal-of-binary-tree/1/
 https://practice.geeksforgeeks.org/problems/left-view-of-binary-tree/1/
 
 https://leetcode.com/problems/binary-tree-paths/
+
+https://leetcode.com/problems/path-sum/
