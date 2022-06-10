@@ -1,0 +1,18 @@
+   TreeNode* solve(vector<int>&preorder,int prestart,int preend,vector<int>&inorder,int instart,int inend,map<int,int>&inindex){
+        if(prestart>preend||instart>inend)return NULL;
+      TreeNode* root=new TreeNode(preorder[prestart]);
+        int indofthat=inindex[preorder[prestart]];
+         int numsleft=indofthat-instart;
+        root->left= solve(preorder,prestart+1,prestart+numsleft,inorder,instart,indofthat-1,inindex);
+        root->right=solve( preorder,prestart+1+numsleft,preend,inorder,indofthat+1,inend,inindex);
+        return root;
+  }
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+            if(preorder.size()!=inorder.size())return NULL;
+           map<int,int>inindex;
+           for(int i=0;i<inorder.size();i++){
+                 inindex[inorder[i]]=i;
+           }
+        
+        return solve(preorder,0,preorder.size()-1,inorder,0,inorder.size()-1,inindex);
+    }
