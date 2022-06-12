@@ -1,0 +1,42 @@
+  //recursive
+    // TreeNode* prev=NULL;
+    // void flatten(TreeNode* root) {
+    //     if(root==NULL)return ;
+    //     flatten(root->right);
+    //     flatten(root->left);
+    //     root->right=prev;
+    //     root->left=NULL;
+    //     prev=root;
+    // }
+    //using stack
+//     void flatten(TreeNode* root){
+//        stack<TreeNode*>s;
+//         s.push(root);
+//         while(s.size()){
+//            TreeNode* temp=s.top();
+//             s.pop();
+//             if(temp->right)s.push(temp->right);
+//             if(temp->left)s.push(temp->left);
+//           if(s.size())  temp->right=s.top();
+//             temp->left=NULL;
+//        }
+        
+//     }
+    
+    //using morris traversal
+   void flatten(TreeNode* root){
+    if(root==NULL)return ;
+       TreeNode* cur=root;
+       while(cur){
+          TreeNode* prev=cur->left;
+           if(prev==NULL){cur=cur->right;}
+           else{
+               while(prev->right)prev=prev->right;
+            
+           prev->right=cur->right;
+           cur->right=cur->left;
+               cur->left=NULL;
+           cur=cur->right;
+           }
+       }
+   }
