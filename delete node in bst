@@ -1,0 +1,42 @@
+Node* help(Node* root){
+    if(root==NULL)return root;
+    
+    Node* cur=root->left;
+    
+    while(cur->right){
+        cur=cur->right;
+    }
+    return cur;
+}
+Node* deleteme(Node* root){
+    if(root==NULL)return root;
+    if(root->left==NULL)return root->right;
+    if(root->right==NULL)return root->left;
+    Node* last=help(root);
+    last->right=root->right;
+    root->right=NULL;
+    return root->left;
+    
+}
+Node *deleteNode(Node *root, int x) {
+    // your code goes here
+    if(root==NULL)return root;
+    Node* cur=root;
+    if(cur->data==x)return deleteme(cur);
+    while(cur){
+        if(cur->right&&cur->right->data==x){cur->right=deleteme(cur->right);
+        
+            return root;
+        }
+        else if(cur->left&&cur->left->data==x){
+            cur->left=deleteme(cur->left);
+            return root;
+            
+        }
+        if(x>cur->data)cur=cur->right;
+        else cur=cur->left;
+        
+    }
+    return root;
+    
+}
