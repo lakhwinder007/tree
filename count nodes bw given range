@@ -1,0 +1,35 @@
+int getCount(Node *root, int l, int h)
+    {
+      // your code goes here   
+      if(root==NULL)return 0;
+      Node* cur=root;
+      int count=0;
+      
+  //morris traversal is best
+      
+      while(cur){
+          Node* prev=cur->left;
+          if(prev==NULL){
+              if(cur->data>l&&cur->data<h)count++;
+              if(cur->data==l||cur->data==h)count++;
+              cur=cur->right;
+          }
+          else{
+              while(prev->right&&prev->right!=cur){
+                  prev=prev->right;
+              }
+              if(prev->right==NULL){
+                  prev->right=cur;
+                  
+                  cur=cur->left;
+              }
+              else{
+                  prev->right=NULL;
+                  if(cur->data>l&&cur->data<h)count++;
+                  if(cur->data==l||cur->data==h)count++;
+                  cur=cur->right;
+              }
+          }
+      }
+      return count;
+      }
