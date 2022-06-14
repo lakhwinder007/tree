@@ -1,0 +1,61 @@
+ void bfs(TreeNode* root,map<TreeNode*,TreeNode*>&parent){
+    queue<TreeNode*>q;
+    q.push(root);
+    while(q.size()){
+        TreeNode* temp=q.front();
+        q.pop();
+        if(temp->left){q.push(temp->left);
+                        parent[temp->left]=temp;}
+        if(temp->right){q.push(temp->right);
+                     parent[temp->right]=temp;}
+    }
+ }
+ TreeNode* reach(TreeNode* root,int target){
+     if(root==NULL)return root;
+     if(root->val==target)return root;
+     TreeNode* left,*right;
+     left=reach(root->left,target);
+     right=reach(root->right,target);
+     if(left)return left;
+     if(right)return right;
+ }
+int Solution::solve(TreeNode* a, int b) {
+    if(a==NULL)return 0;
+    map<TreeNode*,TreeNode*>parent;
+    map<TreeNode*,int>vis;
+    bfs(a,parent);
+    // for(auto i=parent.begin();i!=parent.end();i++){
+    //     cout<<(i->first)->val<<" -> "<<(i->second)->val<<endl;
+    //     }
+    TreeNode* start=reach(a,b);
+    //cout<<start->val<<endl;
+    queue<TreeNode*>q;
+    q.push(start);
+    vis[start]=1;
+    int time=0;
+    while(q.size()){
+        time++;
+        //cout<<time<<endl;
+        int size=q.size();
+        for(int i=0;i<size;i++){
+            TreeNode* temp=q.front();
+            q.pop();
+            if(temp->left&&vis[temp->left]==0){
+                vis[temp->left]=1;
+                q.push(temp->left);
+                
+            }
+            if(temp->right&&vis[temp->right]==0){
+                vis[temp->right]=1;
+                q.push(temp->right);
+            }
+            if(parent[temp]&&vis[parent[temp]]==0){
+                vis[parent[temp]]=1;
+                q.push(parent[temp]);
+            }
+            
+        }
+    }
+    
+    return time-1;
+}
