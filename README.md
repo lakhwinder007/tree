@@ -33,3 +33,5 @@ https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/sub
 https://practice.geeksforgeeks.org/problems/kth-largest-element-in-bst/1
 
 https://practice.geeksforgeeks.org/problems/count-bst-nodes-that-lie-in-a-given-range/1
+
+https://www.interviewbit.com/problems/burn-a-tree/
