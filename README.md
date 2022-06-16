@@ -35,3 +35,5 @@ https://practice.geeksforgeeks.org/problems/kth-largest-element-in-bst/1
 https://practice.geeksforgeeks.org/problems/count-bst-nodes-that-lie-in-a-given-range/1
 
 https://www.interviewbit.com/problems/burn-a-tree/
+
+https://practice.geeksforgeeks.org/problems/leaf-at-same-level/1#
