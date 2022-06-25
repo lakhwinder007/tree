@@ -1,0 +1,19 @@
+ void solve(Node* root,Node* &tail,Node* &head){
+        if(root==NULL)return ;
+        solve(root->left,tail,head);
+        tail->right=root;
+        Node*prev=tail;
+        tail=tail->right;
+        tail->left=prev;
+        solve(root->right,tail,head);
+    }
+    Node * bToDLL(Node *root)
+    {
+        // your code here
+        Node* head=newNode(-1);
+        Node* tail=head;
+        solve(root,tail,head);
+        Node*ans= head->right;
+        ans->left=NULL;
+        return ans;
+    }
