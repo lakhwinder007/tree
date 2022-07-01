@@ -1,0 +1,30 @@
+ bool issame(Node* t, Node* s){
+       if(t==NULL&&s==NULL)return true;
+      // else if(t!=s)return false;
+      if(t==NULL&&s!=NULL)return false;
+      if(s==NULL&&t!=NULL)return false;
+       if(t->data!=s->data)return false;
+       return issame(t->left,s->left)&&issame(t->right,s->right);
+   }
+   bool solve(Node* t, Node* s){
+       if(s==NULL&&t==NULL)return true;
+       if(t==NULL&&s)return false;
+       if(t->data==s->data){
+          // cout<<"yes"<<endl;
+           if(issame(t,s))return true;
+           else{
+               return solve(t->left,s)||solve(t->right,s);
+           }
+       }
+       else{
+           return solve(t->left,s)||solve(t->right,s);
+       }
+   }
+    bool isSubTree(Node* t, Node* s) 
+    {
+        // Your code here
+        if(s==NULL)return true;
+        if(t==NULL)return false;
+        return solve(t,s);
+        
+    }
