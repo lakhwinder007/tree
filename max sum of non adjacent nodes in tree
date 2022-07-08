@@ -1,0 +1,20 @@
+ pair<int,int> solve(Node* root){
+        if(root==NULL){
+            return {0,0};
+        }
+        pair<int,int>left,right,res;
+        left= solve(root->left);
+        right=solve(root->right);
+        
+        res.first=root->data+left.second+right.second;//take
+        res.second=max(left.first,left.second)+max(right.first,right.second);//nottake
+        return res;
+    }
+    int getMaxSum(Node *root) 
+    {
+        // Add your code here
+        //
+        //first=including          second = not including
+        pair<int,int>ans=solve(root);
+       return max(ans.first,ans.second);
+    }
