@@ -1,0 +1,38 @@
+class info {
+    public:
+  int mx;
+  int mn;
+  bool isbst;
+  int size;
+};
+class Solution{
+    public:
+   
+    info solve(Node* root){
+        if(root==NULL)return {INT_MIN,INT_MAX,true,0};
+        info left=solve(root->left);
+        info right=solve(root->right);
+        info cur;
+        if(root->data>left.mx&&root->data<right.mn){
+            cur.size=left.size+right.size+1;
+            cur.mx=max(root->data,right.mx);
+            cur.mn=min(root->data,left.mn);
+            cur.isbst=true;
+        }
+        else {
+            cur.size=max(left.size,right.size);
+            cur.mx=INT_MAX;
+            cur.mn=INT_MIN;
+            cur.isbst=false;
+        }
+        return cur;
+    }
+    int largestBst(Node *root)
+    {
+    	//Your code here
+    	if(root==NULL){
+    	    return 0;
+    	}
+    	info ans= solve(root);
+    	return ans.size;
+    }
