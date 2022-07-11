@@ -1,0 +1,10 @@
+int evalTree(node* root) {
+        if(root==NULL)return 0;
+        if(root->left==NULL&&root->right==NULL)return stoi(root->data);
+        int left=evalTree(root->left);
+        int right=evalTree(root->right);
+        if(root->data=="*")return left*right;
+        else if(root->data=="-")return left-right;
+        else if(root->data=="+")return left+right;
+        else if(root->data=="/")return left/right;
+    }
