@@ -1,0 +1,25 @@
+ bool isfound(Node* root,int target){
+        Node *tail=root;
+        while(tail){
+            if(tail->data==target)return true;
+            else if(tail->data>target)tail=tail->left;
+            else if(tail->data<target)tail=tail->right;
+        }
+        return false;
+    }
+    void inorder(Node* root1,Node* root2,vector<int>&ans){
+        if(root2==NULL)return ;
+        inorder(root1,root2->left,ans);
+        if(isfound(root1,root2->data))ans.push_back(root2->data);
+        inorder(root1,root2->right,ans);
+        
+                 // cout<<root2->data;}
+    }
+    vector <int> findCommon(Node *root1, Node *root2)
+    {
+     //Your code here
+     vector<int>ans;
+     
+     inorder(root1,root2,ans);
+     return ans;
+    }
